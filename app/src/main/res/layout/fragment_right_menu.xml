@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/theme_bg_color_black">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <LinearLayout
+        android:id="@id/user_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70.0dip"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!-- 切换为CircleImageView -->
+        <ImageView
+            android:id="@id/avater_iv"
+            android:layout_width="90.0dip"
+            android:layout_height="90.0dip"
+            android:src="@drawable/avater_default"/>
+
+        <hn.cqf.com.read.view.MyTextView
+            android:id="@id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25.0dip"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp"/>
+    </LinearLayout>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/notification_tv"
+        style="@style/MenuColunmStyle"
+        android:layout_below="@id/user_ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41.0dip"
+        android:text="消   息"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/favorites_tv"
+        style="@style/MenuColunmStyle"
+        android:layout_below="@id/notification_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18.0dip"
+        android:text="收   藏"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/download_tv"
+        style="@style/MenuColunmStyle"
+        android:layout_below="@id/favorites_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18.0dip"
+        android:text="离   线"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/note_tv"
+        style="@style/MenuColunmStyle"
+        android:layout_below="@id/download_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18.0dip"
+        android:text="笔   记"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/msg_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/notification_tv"
+        android:layout_alignTop="@id/notification_tv"
+        android:layout_marginRight="-10.0dip"
+        android:layout_marginTop="-10.0dip"
+        android:background="@drawable/shape_comment_count"
+        android:paddingBottom="2.0dip"
+        android:paddingLeft="8.0dip"
+        android:paddingRight="8.0dip"
+        android:paddingTop="2.0dip"
+        android:textColor="#ffffffff"
+        android:textSize="15.0sp"
+        android:visibility="invisible"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30.0dip"
+        android:textColor="#ffb6b6b6"
+        android:textSize="7.0sp"/>
+
+    <ImageView
+        android:id="@id/dxspace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/version_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18.0dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_owspace"/>
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@id/title_bar_rl"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/title_bar_height"
+                android:background="#ff202020">
+
+    <ImageButton
+        android:id="@id/title_bar_left_ib"
+        android:layout_width="@dimen/title_bar_height"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/title_bar_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="#ffffffff"
+        android:textSize="20.0sp"/>
+
+    <ImageButton
+        android:id="@id/title_bar_right_ib"
+        android:layout_width="@dimen/title_bar_height"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/arrow_left"
+        android:visibility="invisible"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/title_bar_right_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15.0dip"
+        android:gravity="center"
+        android:textColor="#ff2a9fff"
+        android:textSize="18.0sp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
+
+    <hn.cqf.com.read.view.MyTextView
+        android:id="@id/title_bar_line_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_alignParentBottom="true"
+        android:background="#ffcccccc"
+        android:visibility="gone"/>
+</RelativeLayout>

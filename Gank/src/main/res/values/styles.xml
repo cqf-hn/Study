@@ -1,0 +1,57 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--借鉴  Material-Animations-CN-master-->
+        <!--
+        setExitTransition() 和 setSharedElementExitTransition() 方法 定义了退出动画
+        setEnterTransition() 和 setSharedElementEnterTransition() 方法定义了进入动画.
+        为了使这两种动画同时有效,需做以下声明
+        -->
+        <item name="android:windowContentTransitions">true</item>
+        <!--设置整个视图的背景-->
+        <item name="android:windowBackground">@color/light_grey</item>
+        <!--<item name="android:colorPrimary">@color/material_animations_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_animations_primary_dark</item>
+        <item name="android:colorAccent">@color/material_animations_accent</item>-->
+        <!--<item name="android:statusBarColor">@color/material_animations_primary_dark</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>-->
+        <!--借鉴  Material-Animations-CN-master-->
+
+        <!--设置RecyclerView的分割线的颜色-->
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--无用-->
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!--无用-->
+
+    <style name="ViaTextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#bdbdbd</item>
+    </style>
+
+    <style name="TitleArea">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="TitleStyle" parent="TitleArea">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+    </style>
+
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Study</string>
+    <string name="home_page">首  页</string>
+    <string name="words">文  字</string>
+    <string name="voice">声  音</string>
+    <string name="video">影    像</string>
+    <string name="calendar">单向历</string>
+</resources>

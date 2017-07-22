@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@id/welcome_rl"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ff252525">
+
+    <!--  -->
+    <ScrollView
+        android:id="@id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:enabled="false"
+        android:scrollbars="none">
+
+        <ImageView
+            android:id="@id/welcome_iv"
+            android:layout_width="480.0dip"
+            android:layout_height="640.0dip"
+            android:scaleType="centerCrop"/>
+    </ScrollView>
+
+    <ImageView
+        android:id="@id/weread_logo_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160.0dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome_weread"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weread_logo_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171.0dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/weread_signature"/>
+
+    <ImageView
+        android:id="@id/bottomimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50.0dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_owspace"/>
+
+    <ImageView
+        android:id="@id/publish_logo_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomimg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10.0dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/leshiimg"
+        android:visibility="invisible"/>
+</RelativeLayout>

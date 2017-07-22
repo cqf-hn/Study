@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@id/gradual_shadow_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff252525">
+    <!-- 刷新 -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- 垂直的ViewPager -->
+        <hn.cqf.com.read.view.HorizonVerticalViewPager
+            android:id="@id/vertical_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            apps:isVertical="true"
+            android:background="@color/theme_bg_color"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+     头部
+    <include layout="@layout/layout_title_bar"/>
+
+    <!-- 广告部分 -->
+    <RelativeLayout
+        android:id="@id/ad_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@id/ad_multview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff000000"
+            android:scaleType="centerCrop"/>
+        <!-- 跳过广告,可自定义圆形控件,仿网易 -->
+        <ImageView
+            android:id="@id/welcome_skip_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="14.0dip"
+            android:layout_marginTop="23.0dip"
+            android:src="@drawable/skipad"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <!-- 欢迎页面,一定时间后让这个View消失,看看有没有动画效果 -->
+    <include layout="@layout/layout_welcome"/>
+</FrameLayout>

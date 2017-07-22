@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_group_one"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_welfare"
+            android:icon="@drawable/like"
+            android:title="福利"/>
+        <item
+            android:id="@+id/nav_gank"
+            android:icon="@drawable/ic_magazine"
+            android:title="干货订阅"/>
+        <item
+            android:id="@+id/nav_3"
+            android:icon="@drawable/ic_movie"
+            android:title="视频"/>
+        <item
+            android:id="@+id/nav_4"
+            android:icon="@drawable/ic_me"
+            android:title="Mail"/>
+        <item
+            android:id="@+id/nav_5"
+            android:icon="@drawable/ic_me"
+            android:title="Tasks"/>
+
+    </group>
+    <group
+        android:id="@+id/menu_group_two"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_set"
+            android:icon="@drawable/ic_menu_theme"
+            android:title="主题切换" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_setting"
+            android:title="设置" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="关于" />
+    </group>
+
+</menu>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Gank</string>
+    <string name="share_ele_title">ShareEleTitle</string>
+    <string name="share_ele_image">ShareEleImage</string>
+    <array name="gank_types">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>休息视频</item>
+        <item>拓展资源</item>
+        <item>前端</item>
+        <item>all</item>
+    </array>
+</resources>

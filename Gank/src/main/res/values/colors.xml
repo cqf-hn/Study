@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--借鉴 Material-Animations-CN-master-->
+    <color name="light_grey">#E0E0E0</color>
+    <color name="material_animations_primary">#039BE5</color>
+    <color name="material_animations_primary_dark">#0277BD</color>
+    <color name="material_animations_accent">#3F51B5</color>
+    <color name="black">#ff000000</color>
+
+
+
+
+    <!--借鉴 Material-Animations-CN-master-->
+</resources>

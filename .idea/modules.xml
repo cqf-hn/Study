@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AText/AText.iml" filepath="$PROJECT_DIR$/AText/AText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gank/Gank.iml" filepath="$PROJECT_DIR$/Gank/Gank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyPickerView/MyPickerView.iml" filepath="$PROJECT_DIR$/MyPickerView/MyPickerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Study.iml" filepath="$PROJECT_DIR$/Study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwipeBackLayout/SwipeBackLayout.iml" filepath="$PROJECT_DIR$/SwipeBackLayout/SwipeBackLayout.iml" />
+    </modules>
+  </component>
+</project>
