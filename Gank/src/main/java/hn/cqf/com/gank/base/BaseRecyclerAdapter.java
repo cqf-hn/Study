@@ -1,78 +1,42 @@
 package hn.cqf.com.gank.base;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
-import org.reactivestreams.Subscription;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import hn.cqf.com.gank.utils.AnimUtils;
 
 public abstract class BaseRecyclerAdapter<T> extends
-        RecyclerView.Adapter<BaseRecyclerViewHolder> {
+        RecyclerView.Adapter<BaseRecyclerViewWrapper.BaseRecyclerViewHolder> implements android.widget.Filterable {
 
 
+    protected BaseActivity _activity;
     /*数据集合*/
-    protected List<T> mData;
+    protected ArrayList<T> mData;
+    private ArrayList<T> checkData = new ArrayList<>();
+    private Filter filter;
 
-    /*单击事件*/
-    private OnItemClickListener mListener;
-    private Subscription mSubscription;
-
-    /*事件监听接口*/
-    public interface OnItemClickListener {
-        void onClick(View v, int position);
+    public BaseRecyclerAdapter(BaseActivity activity) {
+        this._activity = activity;
     }
-
-    private static final int DELAY = 138;
-    private int mLastPosition = -1;
-
-    /**
-     * 返回item的布局资源id
-     *
-     * @param viewType
-     */
-    protected abstract int getItemLayoutResId(int viewType);
 
     /**
      * 返回BaseViewHolder的子类
      */
-    protected abstract BaseRecyclerViewHolder createViewHolder(View itemView, int type);
+    protected abstract BaseRecyclerViewWrapper createViewWrapper(BaseActivity _activity, ViewGroup parent, int type);
 
-    /**
-     * 设置事件单击监听器
-     */
-    public void setItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
+
+    @Override
+    public BaseRecyclerViewWrapper.BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        final BaseRecyclerViewWrapper wrapper = createViewWrapper(_activity, parent, viewType);
+        wrapper.init(this, mData, viewType);
+        return wrapper.getViewHolder();
     }
 
     @Override
-    public BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View itemView = inflater.inflate(getItemLayoutResId(viewType), parent, false);
-        final BaseRecyclerViewHolder holder = createViewHolder(itemView, viewType);
-        if (mListener != null && isSetClickListener(viewType)) {
-            itemView.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            mListener.onClick(itemView, holder.getLayoutPosition());
-                        }
-                    });
-        }
-        return holder;
-    }
-
-    protected boolean isSetClickListener(int viewType) {
-        return true;
-    }
-
-    @Override
-    public void onBindViewHolder(BaseRecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(BaseRecyclerViewWrapper.BaseRecyclerViewHolder holder, int position) {
         holder.bindData(position);
     }
 
@@ -86,7 +50,7 @@ public abstract class BaseRecyclerAdapter<T> extends
         return super.getItemViewType(position);
     }
 
-    public void setDataAndRefresh(List<T> data) {
+    public void setDataAndRefresh(ArrayList<T> data) {
         if (mData != null) {
             mData.clear();
             mData.addAll(data);
@@ -101,11 +65,24 @@ public abstract class BaseRecyclerAdapter<T> extends
         return mData.get(position);
     }
 
-    public void showItemAnim(View view, int position) {
-        if (position > mLastPosition) {
-            view.setAlpha(0);
-            AnimUtils.AnimInsert(view, DELAY * position, TimeUnit.MILLISECONDS);
-            mLastPosition = position;
-        }
+    public void addData(List<T> dataBeen) {
+        mData.addAll(dataBeen);
+    }
+
+    public ArrayList<T> getData() {
+        return mData;
+    }
+
+    public ArrayList<T> getCheckData() {
+        return checkData;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Filter filter) {
+        this.filter = filter;
     }
 }

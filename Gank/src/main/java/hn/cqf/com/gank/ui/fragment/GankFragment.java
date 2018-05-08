@@ -19,10 +19,9 @@ import butterknife.BindView;
 import hn.cqf.com.gank.R;
 import hn.cqf.com.gank.adapter.GankListAdapter;
 import hn.cqf.com.gank.adapter.LoadMoreWrapper;
-import hn.cqf.com.gank.base.BaseRecyclerAdapter;
+import hn.cqf.com.gank.base.BaseActivity;
 import hn.cqf.com.gank.bean.DataBean;
 import hn.cqf.com.gank.cons.Constant;
-import hn.cqf.com.gank.ui.network.NetWorkActivity;
 
 import static hn.cqf.com.gank.R.id.recycler_view;
 import static hn.cqf.com.gank.R.id.swipe_refresh_layout;
@@ -33,7 +32,7 @@ import static hn.cqf.com.gank.R.id.swipe_refresh_layout;
  * @desc 干货订阅:ViewPager的item(Fragment)
  */
 public class GankFragment extends Fragment implements GankContract.View,
-        LoadMoreWrapper.OnLoadMoreListener, BaseRecyclerAdapter.OnItemClickListener,
+        LoadMoreWrapper.OnLoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(recycler_view)
@@ -113,7 +112,7 @@ public class GankFragment extends Fragment implements GankContract.View,
         View view = inflater.inflate(R.layout.fragment_gank, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(recycler_view);
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(swipe_refresh_layout);
-        mAdapter = new GankListAdapter();
+        mAdapter = new GankListAdapter((BaseActivity) getActivity());
         mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
         mLoadMoreWrapper.setOnLoadMoreListener(this);
@@ -126,7 +125,6 @@ public class GankFragment extends Fragment implements GankContract.View,
 
     private void initEvent() {
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mAdapter.setItemClickListener(this);
     }
 
 
@@ -155,7 +153,7 @@ public class GankFragment extends Fragment implements GankContract.View,
     public void setAdapterData(List<DataBean> dataBeen) {
         mSwipeRefreshLayout.setRefreshing(false);
         //mAdapter.setDataAndRefresh(dataBeen);
-        mAdapter.setData(dataBeen);
+        mAdapter.setDataAndRefresh((ArrayList<DataBean>) dataBeen);
         mLoadMoreWrapper.notifyDataSetChanged();
         mLoadMoreWrapper.notifyItemRangeChanged(0,dataBeen.size());
     }
@@ -171,12 +169,6 @@ public class GankFragment extends Fragment implements GankContract.View,
     public void showError(String msg, Throwable e) {
         mSwipeRefreshLayout.setRefreshing(false);
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onClick(View v, int position) {
-        DataBean dataBean = mAdapter.getData().get(position);
-        mPresenter.startActivity(dataBean,getActivity(), NetWorkActivity.class,v);
     }
 
     @Override

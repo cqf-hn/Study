@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
 import android.transition.ChangeImageTransform;
 import android.transition.TransitionSet;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,10 +17,8 @@ import hn.cqf.com.gank.R;
 import hn.cqf.com.gank.adapter.LoadMoreWrapper;
 import hn.cqf.com.gank.adapter.PictureAdapter;
 import hn.cqf.com.gank.base.BaseActivity;
-import hn.cqf.com.gank.base.BaseRecyclerAdapter;
 import hn.cqf.com.gank.bean.DataBean;
 import hn.cqf.com.gank.cons.Constant;
-import hn.cqf.com.gank.ui.image.ImageActivity;
 
 /**
  * @author cqf
@@ -30,7 +27,7 @@ import hn.cqf.com.gank.ui.image.ImageActivity;
  */
 public class WelfareActivity extends BaseActivity<WelfarePresenter>
         implements WelfareContract.View, SwipeRefreshLayout.OnRefreshListener,
-        LoadMoreWrapper.OnLoadMoreListener, BaseRecyclerAdapter.OnItemClickListener {
+        LoadMoreWrapper.OnLoadMoreListener {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.recycler_view)
@@ -48,7 +45,7 @@ public class WelfareActivity extends BaseActivity<WelfarePresenter>
 
     @Override
     protected void setupWindowAnimations() {
-        TransitionSet mtransitionset=new TransitionSet();
+        TransitionSet mtransitionset = new TransitionSet();
         mtransitionset.addTransition(new ChangeBounds());
         mtransitionset.addTransition(new ChangeImageTransform());
         //  mtransitionset.addTransition(new Fade());
@@ -68,7 +65,7 @@ public class WelfareActivity extends BaseActivity<WelfarePresenter>
 
     @Override
     protected void initView() {
-        mAdapter = new PictureAdapter();
+        mAdapter = new PictureAdapter(this);
         mAdapter.setHasStableIds(true);
         mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
@@ -99,7 +96,6 @@ public class WelfareActivity extends BaseActivity<WelfarePresenter>
     @Override
     protected void initEvent() {
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mAdapter.setItemClickListener(this);
     }
 
     @Override
@@ -125,25 +121,19 @@ public class WelfareActivity extends BaseActivity<WelfarePresenter>
     public void setAdapterData(List<DataBean> dataBeen) {
         mSwipeRefreshLayout.setRefreshing(false);
         //mAdapter.setDataAndRefresh(dataBeen);
-        mAdapter.setData(dataBeen);
-        mLoadMoreWrapper.notifyItemRangeChanged(0,dataBeen.size());
+        mAdapter.setDataAndRefresh((ArrayList<DataBean>) dataBeen);
+        mLoadMoreWrapper.notifyItemRangeChanged(0, dataBeen.size());
     }
 
     @Override
     public void addData(List<DataBean> dataBeen) {
         int lastCount = mAdapter.getItemCount();
         mAdapter.addData(dataBeen);
-        mLoadMoreWrapper.notifyItemRangeInserted(lastCount,dataBeen.size());
+        mLoadMoreWrapper.notifyItemRangeInserted(lastCount, dataBeen.size());
     }
 
     @Override
     public void onLoadMoreRequested() {
         mPresenter.onPullUpRefresh();
-    }
-
-    @Override
-    public void onClick(View v, int position) {
-        ArrayList<DataBean> data = mAdapter.getData();
-        mPresenter.startActivity(data,position ,this, ImageActivity.class,v);
     }
 }

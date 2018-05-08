@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,10 +40,8 @@ import butterknife.BindView;
 import hn.cqf.com.gank.R;
 import hn.cqf.com.gank.adapter.HomeAdapter;
 import hn.cqf.com.gank.base.BaseActivity;
-import hn.cqf.com.gank.base.BaseRecyclerAdapter;
 import hn.cqf.com.gank.bean.DataBean;
 import hn.cqf.com.gank.ui.gank.GankActivity;
-import hn.cqf.com.gank.ui.network.NetWorkActivity;
 import hn.cqf.com.gank.ui.welfare.WelfareActivity;
 import hn.cqf.com.gank.utils.BitmapUtils;
 import hn.cqf.com.gank.utils.MyTimeUtils;
@@ -53,8 +52,7 @@ import hn.cqf.com.pickerview.bean.TimeInfo;
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener, SwipeRefreshLayout.OnRefreshListener,
-        TimePickerView.OnTimeSelectListener, MainContract.View,
-        BaseRecyclerAdapter.OnItemClickListener {
+        TimePickerView.OnTimeSelectListener, MainContract.View{
 
     @BindView(R.id.scroll_lly)
     LinearLayout mScrollLly;
@@ -139,7 +137,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     protected void initView() {
         mLeftMenu.setCheckedItem(R.id.nav_welfare);//设置默认选中
 
-        mAdapter = new HomeAdapter();
+        mAdapter = new HomeAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -170,7 +168,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mFab.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         pvTime.setOnTimeSelectListener(this);
-        mAdapter.setItemClickListener(this);
     }
 
     @Override
@@ -301,7 +298,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void setAdapterData(List<DataBean> dataBeen) {
         mSwipeRefreshLayout.setRefreshing(false);
-        mAdapter.setDataAndRefresh(dataBeen);
+        mAdapter.setDataAndRefresh((ArrayList<DataBean>) dataBeen);
     }
 
     @Override
@@ -349,14 +346,5 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
         mDrawerLayout.closeDrawers();
         return true;
-    }
-
-    @Override
-    public void onClick(View v, int position) {
-        DataBean bean = mAdapter.getItem(position);
-        mPresenter.startActivity(bean, this, NetWorkActivity.class, v);
-        //        if(Build.VERSION.SDK_INT > 5) {
-        //            overridePendingTransition(R.anim.open_enter_anim,R.anim.open_exit_anim);
-        //        }
     }
 }

@@ -6,6 +6,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import hn.cqf.com.gank.base.BaseRecyclerViewWrapper;
+
 public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int ITEM_TYPE_LOAD_MORE = Integer.MAX_VALUE - 2;
 
@@ -62,7 +64,9 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
             return;
         }
-        mInnerAdapter.onBindViewHolder(holder, position);
+        if(holder instanceof BaseRecyclerViewWrapper.BaseRecyclerViewHolder) {
+            mInnerAdapter.onBindViewHolder(holder, position);
+        }
     }
 
     @Override
